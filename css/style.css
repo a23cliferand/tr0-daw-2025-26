@@ -1,0 +1,114 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.5;
+    color: #333;
+    background-color: #f5f5f5;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Contenedores principales - solo muestran estilo si tienen contenido */
+#inici:not(:empty),
+#marcador:not(:empty),
+#temps:not(:empty),
+#questionari:not(:empty),
+#final:not(:empty) {
+    width: 90%;
+    max-width: 600px;
+    margin: 15px 0;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Títulos */
+h1, h2, h3 {
+    margin-bottom: 15px;
+    color: #2c3e50;
+    text-align: center;
+}
+
+/* Botones */
+button {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    background-color: #3498db;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+/* Lista de respuestas */
+ul {
+    list-style: none;
+}
+
+li {
+    margin: 8px 0;
+}
+
+.answer-button {
+    width: 100%;
+    padding: 10px;
+    text-align: left;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.answer-button:hover {
+    background-color: #e9ecef;
+}
+
+.answer-button.selected {
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+    color: #0c5460;
+    font-weight: bold;
+}
+
+/* Imágenes */
+img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
+/* Marcador y temporizador */
+#marcador:not(:empty), 
+#temps:not(:empty) {
+    text-align: center;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+    #inici:not(:empty),
+    #marcador:not(:empty),
+    #temps:not(:empty),
+    #questionari:not(:empty),
+    #final:not(:empty) {
+        width: 80%;
+    }
+}

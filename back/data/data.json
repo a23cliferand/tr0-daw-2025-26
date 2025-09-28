@@ -1,0 +1,244 @@
+{
+  "preguntes": [
+    {
+      "id": 1,
+      "pregunta": "Quan és obligatori utilitzar el cinturó de seguretat?",
+      "respostes": [
+        { "id": 1, "etiqueta": "Només en vies interurbanes" },
+        { "id": 2, "etiqueta": "Sempre, tant en vies urbanes com interurbanes" },
+        { "id": 3, "etiqueta": "Només quan es condueix per autopista" },
+        { "id": 4, "etiqueta": "Només si el vehicle supera els 100 km/h" }
+      ],
+      "resposta_correcta": 2,
+      "imatge": "../img/cinturo.jpg"
+    },
+    {
+      "id": 2,
+      "pregunta": "Quina és la velocitat màxima permesa en una autopista per a turismes?",
+      "respostes": [
+        { "id": 1, "etiqueta": "100 km/h" },
+        { "id": 2, "etiqueta": "110 km/h" },
+        { "id": 3, "etiqueta": "120 km/h" },
+        { "id": 4, "etiqueta": "130 km/h" }
+      ],
+      "resposta_correcta": 3,
+      "imatge": "../img/autopista.jpg"
+    },
+    {
+      "id": 3,
+      "pregunta": "Què indica un senyal triangular amb un dibuix d’un cérvol?",
+      "respostes": [
+        { "id": 1, "etiqueta": "Zona de caça" },
+        { "id": 2, "etiqueta": "Perill per possible pas d’animals salvatges" },
+        { "id": 3, "etiqueta": "Entrada a un parc natural" },
+        { "id": 4, "etiqueta": "Carretera tallada per fauna" }
+      ],
+      "resposta_correcta": 2,
+      "imatge": "../img/cervol.jpg"
+    },
+    {
+      "id": 4,
+      "pregunta": "Quin document és obligatori portar sempre al vehicle?",
+      "respostes": [
+        { "id": 1, "etiqueta": "Permís de circulació i assegurança" },
+        { "id": 2, "etiqueta": "Rebut de l’impost de circulació" },
+        { "id": 3, "etiqueta": "Llicència municipal de conducció" },
+        { "id": 4, "etiqueta": "Carnet de conduir antic" }
+      ],
+      "resposta_correcta": 1,
+      "imatge": "../img/documents.jpg"
+    },
+    {
+      "id": 5,
+      "pregunta": "Què s’ha de fer davant un semàfor en verd intermitent?",
+      "respostes": [
+        { "id": 1, "etiqueta": "Accelerar per passar abans que es posi vermell" },
+        { "id": 2, "etiqueta": "Aturar-se immediatament" },
+        { "id": 3, "etiqueta": "Circular amb precaució perquè avisa que canviarà a vermell" },
+        { "id": 4, "etiqueta": "Ignorar-lo i continuar normalment" }
+      ],
+      "resposta_correcta": 3,
+      "imatge": "../img/semafor.jpg"
+    },
+    {
+      "id": 6,
+      "pregunta": "Com s’ha de col·locar un triangle d’emergència en cas d’avaria en una via interurbana?",
+      "respostes": [
+        { "id": 1, "etiqueta": "50 metres davant i darrere del vehicle" },
+        { "id": 2, "etiqueta": "100 metres davant i darrere del vehicle" },
+        { "id": 3, "etiqueta": "A qualsevol lloc visible" },
+        { "id": 4, "etiqueta": "No cal col·locar-los" }
+      ],
+      "resposta_correcta": 1,
+      "imatge": "../img/triangles.jpg"
+    },
+    {
+      "id": 7,
+      "pregunta": "Què indica una línia contínua blanca al centre de la calçada?",
+      "respostes": [
+        { "id": 1, "etiqueta": "Es permet avançar amb precaució" },
+        { "id": 2, "etiqueta": "Prohibeix avançar i canviar de carril" },
+        { "id": 3, "etiqueta": "És només una recomanació" },
+        { "id": 4, "etiqueta": "Senyalitza un carril reservat" }
+      ],
+      "resposta_correcta": 2,
+      "imatge": "../img/linia.jpg"
+    },
+    {
+      "id": 8,
+      "pregunta": "Quan és obligatori utilitzar els llums d’encreuament durant el dia?",
+      "respostes": [
+        { "id": 1, "etiqueta": "En túnels i passos inferiors" },
+        { "id": 2, "etiqueta": "Sempre, en qualsevol situació" },
+        { "id": 3, "etiqueta": "Només si plou intensament" },
+        { "id": 4, "etiqueta": "Només de nit" }
+      ],
+      "resposta_correcta": 1,
+      "imatge": "../img/llums.jpg"
+    },
+    {
+      "id": 9,
+      "pregunta": "Què indica un senyal rodó amb fons blau i una fletxa blanca cap a la dreta?",
+      "respostes": [
+        { "id": 1, "etiqueta": "Prohibit girar a la dreta" },
+        { "id": 2, "etiqueta": "Obligació de continuar recte" },
+        { "id": 3, "etiqueta": "Obligació de girar a la dreta" },
+        { "id": 4, "etiqueta": "Carretera de sentit únic" }
+      ],
+      "resposta_correcta": 3,
+      "imatge": "../img/senyal_dreta.jpg"
+    },
+    {
+      "id": 10,
+      "pregunta": "Què s’ha de fer si un agent de trànsit aixeca un braç amb la mà oberta?",
+      "respostes": [
+        { "id": 1, "etiqueta": "Aturar-se, perquè indica parada obligatòria" },
+        { "id": 2, "etiqueta": "Accelerar per sortir de la intersecció" },
+        { "id": 3, "etiqueta": "Només reduir la velocitat" },
+        { "id": 4, "etiqueta": "Continuar circulant sense canvis" }
+      ],
+      "resposta_correcta": 1,
+      "imatge": "../img/agent.jpg"
+    },
+    {
+      "id": 11,
+      "pregunta": "Quina és la taxa màxima d’alcohol permesa en sang per a conductors novells?",
+      "respostes": [
+        { "id": 1, "etiqueta": "0,3 g/l" },
+        { "id": 2, "etiqueta": "0,5 g/l" },
+        { "id": 3, "etiqueta": "0,0 g/l" },
+        { "id": 4, "etiqueta": "0,25 g/l" }
+      ],
+      "resposta_correcta": 1,
+      "imatge": "../img/alcohol.jpg"
+    },
+    {
+      "id": 12,
+      "pregunta": "Quina és la distància mínima que s’ha de mantenir en un pas a nivell sense barreres?",
+      "respostes": [
+        { "id": 1, "etiqueta": "5 metres" },
+        { "id": 2, "etiqueta": "10 metres" },
+        { "id": 3, "etiqueta": "15 metres" },
+        { "id": 4, "etiqueta": "20 metres" }
+      ],
+      "resposta_correcta": 3,
+      "imatge": "../img/pas_nivell.jpg"
+    },
+    {
+      "id": 13,
+      "pregunta": "En cas de pluja intensa, què és recomanable fer?",
+      "respostes": [
+        { "id": 1, "etiqueta": "Reduir la velocitat i augmentar la distància de seguretat" },
+        { "id": 2, "etiqueta": "Encendre només els llums llargs" },
+        { "id": 3, "etiqueta": "Circular molt a prop del vehicle davanter" },
+        { "id": 4, "etiqueta": "Accelerar per sortir ràpid de la zona" }
+      ],
+      "resposta_correcta": 1,
+      "imatge": "../img/pluja.jpg"
+    },
+    {
+      "id": 14,
+      "pregunta": "Què significa un senyal triangular amb un dibuix d’un semàfor dins?",
+      "respostes": [
+        { "id": 1, "etiqueta": "Proximitat d’un semàfor" },
+        { "id": 2, "etiqueta": "Obligació d’aturar-se" },
+        { "id": 3, "etiqueta": "Zona amb prioritat" },
+        { "id": 4, "etiqueta": "Semàfor només per a vianants" }
+      ],
+      "resposta_correcta": 1,
+      "imatge": "../img/senyal_semafor.jpg"
+    },
+    {
+      "id": 15,
+      "pregunta": "Quan es pot utilitzar l’avís acústic (clàxon)?",
+      "respostes": [
+        { "id": 1, "etiqueta": "Sempre que vulguem avançar" },
+        { "id": 2, "etiqueta": "Només per evitar un accident o en zones autoritzades" },
+        { "id": 3, "etiqueta": "Per saludar altres conductors" },
+        { "id": 4, "etiqueta": "Per indicar que el semàfor està en verd" }
+      ],
+      "resposta_correcta": 2,
+      "imatge": "../img/claxon.jpg"
+    },
+    {
+      "id": 16,
+      "pregunta": "Quina és la velocitat màxima permesa dins d’una via urbana?",
+      "respostes": [
+        { "id": 1, "etiqueta": "30 km/h" },
+        { "id": 2, "etiqueta": "40 km/h" },
+        { "id": 3, "etiqueta": "50 km/h" },
+        { "id": 4, "etiqueta": "60 km/h" }
+      ],
+      "resposta_correcta": 3,
+      "imatge": "../img/urbana.jpg"
+    },
+    {
+      "id": 17,
+      "pregunta": "Com s’ha de circular en una rotonda?",
+      "respostes": [
+        { "id": 1, "etiqueta": "Sempre pel carril exterior" },
+        { "id": 2, "etiqueta": "Pel carril més adequat segons la sortida que es vulgui prendre" },
+        { "id": 3, "etiqueta": "Només pel carril central" },
+        { "id": 4, "etiqueta": "Es pot circular indistintament per qualsevol carril sense ordre" }
+      ],
+      "resposta_correcta": 2,
+      "imatge": "../img/rotonda.jpg"
+    },
+    {
+      "id": 18,
+      "pregunta": "Què s’ha de fer si un vehicle d’emergència circula amb llums i sirena?",
+      "respostes": [
+        { "id": 1, "etiqueta": "Parar immediatament al mig de la via" },
+        { "id": 2, "etiqueta": "Facilitar el pas apartant-se o aturant-se si cal" },
+        { "id": 3, "etiqueta": "Accelerar per no entorpir" },
+        { "id": 4, "etiqueta": "Ignorar-lo i mantenir la marxa" }
+      ],
+      "resposta_correcta": 2,
+      "imatge": "../img/emergencia.jpg"
+    },
+    {
+      "id": 19,
+      "pregunta": "Què indica un senyal rodó amb una línia vermella i un camio dins?",
+      "respostes": [
+        { "id": 1, "etiqueta": "Prohibició de circular a vehicles destinats al transport de mercaderia" },
+        { "id": 2, "etiqueta": "Zona d’estacionament reservada" },
+        { "id": 3, "etiqueta": "Obligació de circular a 30 km/h" },
+        { "id": 4, "etiqueta": "Fi de prohibicions" }
+      ],
+      "resposta_correcta": 1,
+      "imatge": "../img/camions.jpg"
+    },
+    {
+      "id": 20,
+      "pregunta": "Quan és obligatori utilitzar el casc en motocicletes?",
+      "respostes": [
+        { "id": 1, "etiqueta": "Només a vies interurbanes" },
+        { "id": 2, "etiqueta": "Sempre, tant en vies urbanes com interurbanes" },
+        { "id": 3, "etiqueta": "Només quan es viatja amb passatger" },
+        { "id": 4, "etiqueta": "Només a velocitats superiors a 50 km/h" }
+      ],
+      "resposta_correcta": 2,
+      "imatge": "../img/moto.jpg"
+    }
+  ]
+}
