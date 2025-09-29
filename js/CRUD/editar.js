@@ -33,7 +33,7 @@ export function showEditarForm(data, onSubmit, principalList) {
                 <option value="4" ${data.resposta_correcta == 4 ? "selected" : ""}>4</option>
             </select>
             
-            <label for="imatge">Imatge</label>
+            <label for="imatge">Imatge</label><br>
             <img src="http://localhost:8080/img/${data.imatge}" alt="Imatge actual" style="max-width: 200px; display: 'block' : 'none'}; margin-bottom: 10px;">
             <input type="file" id="imatge" name="imatge">
             
