@@ -7,7 +7,7 @@ export function loadQuestion(globalData, currentQuestionIndex, saveAnswer, updat
 
     let stringDataQuestionari = `
         <h3>${question.pregunta}</h3>
-        <img src='${question.imatge}' alt='Pregunta ${question.id}'>
+        <img src='../img/${question.imatge}' alt='Pregunta ${question.id}'>
         <ul>
     `;
 
