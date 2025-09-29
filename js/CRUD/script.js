@@ -14,20 +14,40 @@ function fetchData() {
 }
 
 function handleCreate(newData) {
-    console.log("Datos nuevos para enviar:", newData);
+    console.log("Creating new data:", newData);
+    const formData = new FormData();
+
+    formData.append("pregunta", newData.pregunta);
+    formData.append("respostes", JSON.stringify(newData.respostes));
+    formData.append("resposta_correcta", newData.resposta_correcta);
+
+    if (newData.imatge instanceof File) {
+        formData.append("imatge", newData.imatge);
+    }
+
     fetch("http://localhost:8080/back/back.php?action=crearPregunta", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newData),
+        body: formData,
     }).then(() => fetchData());
 }
 
+
 function handleEdit(updatedData) {
-    console.log("Datos actualizados para enviar:", updatedData);
+    console.log("Editing data:", updatedData);
+    const formData = new FormData();
+
+    formData.append("id", updatedData.id);
+    formData.append("pregunta", updatedData.pregunta);
+    formData.append("respostes", JSON.stringify(updatedData.respostes));
+    formData.append("resposta_correcta", updatedData.resposta_correcta);
+
+    if (updatedData.imatge instanceof File) {
+        formData.append("imatge", updatedData.imatge);
+    }
+
     fetch("http://localhost:8080/back/back.php?action=editarPregunta", {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatedData),
+        method: "POST",
+        body: formData,
     }).then(() => fetchData());
 }
 

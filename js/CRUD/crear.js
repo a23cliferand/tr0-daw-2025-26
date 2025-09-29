@@ -4,51 +4,38 @@ export function showCrearForm(onSubmit) {
     const crearContainer = document.getElementById("crear");
     crearContainer.innerHTML = `
         <h2>Crear Pregunta</h2>
-        <form id="crearForm">
-            <ul style="list-style: none; padding: 0;">
-                <li>
-                    <label for="pregunta">Pregunta:</label><br>
-                    <input type="text" id="pregunta" name="pregunta" required>
-                </li>
-                <li>
-                    <label>Respostes:</label>
-                    <ul style="list-style: none; padding-left: 1em;">
-                        <li>
-                            <label for="resposta1">Resposta 1:</label><br>
-                            <input type="text" id="resposta1" name="resposta1" required>
-                        </li>
-                        <li>
-                            <label for="resposta2">Resposta 2:</label><br>
-                            <input type="text" id="resposta2" name="resposta2" required>
-                        </li>
-                        <li>
-                            <label for="resposta3">Resposta 3:</label><br>
-                            <input type="text" id="resposta3" name="resposta3" required>
-                        </li>
-                        <li>
-                            <label for="resposta4">Resposta 4:</label><br>
-                            <input type="text" id="resposta4" name="resposta4" required>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <label for="resposta_correcta">Resposta Correcta (1-4):</label><br>
-                    <select id="resposta_correcta" name="resposta_correcta" required>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                    </select>
-                </li>
-                <li>
-                    <label for="imatge">Imatge (URL):</label><br>
-                    <input type="text" id="imatge" name="imatge" required>
-                </li>
-                <li style="margin-top: 1em;">
-                    <button type="submit">Crear</button>
-                    <button type="button" id="cancelarCrear">Cancelar</button>
-                </li>
-            </ul>
+        <form id="crearForm" enctype="multipart/form-data">
+            <label for="pregunta">Pregunta:</label>
+            <input type="text" id="pregunta" name="pregunta" required>
+            
+            <label>Respostes:</label>
+            <div class="respostes-container">
+                <label for="resposta1">Resposta 1:</label>
+                <input type="text" id="resposta1" name="resposta1" required>
+                
+                <label for="resposta2">Resposta 2:</label>
+                <input type="text" id="resposta2" name="resposta2" required>
+                
+                <label for="resposta3">Resposta 3:</label>
+                <input type="text" id="resposta3" name="resposta3" required>
+                
+                <label for="resposta4">Resposta 4:</label>
+                <input type="text" id="resposta4" name="resposta4" required>
+            </div>
+            
+            <label for="resposta_correcta">Resposta Correcta (1-4):</label>
+            <select id="resposta_correcta" name="resposta_correcta" required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+            
+            <label for="imatge" required>Imatge:</label>
+            <input type="file" id="imatge" name="imatge" required>
+            
+            <button type="submit">Crear</button>
+            <button type="button" id="cancelarCrear">Cancelar</button>
         </form>
     `;
 
@@ -60,7 +47,7 @@ export function showCrearForm(onSubmit) {
         e.preventDefault();
         try {
 
-            if (!form.pregunta.id || !form.resposta1.value.trim() || !form.resposta2.value.trim() || !form.resposta3.value.trim() || !form.resposta4.value.trim() || !form.imatge.value.trim()) {
+            if (!form.pregunta.id || !form.resposta1.value.trim() || !form.resposta2.value.trim() || !form.resposta3.value.trim() || !form.resposta4.value.trim() || !form.imatge.files.length) {
                 alert("Por favor, completa todos los campos correctamente");
                 return;
             }
@@ -81,7 +68,7 @@ export function showCrearForm(onSubmit) {
             pregunta: form.pregunta.value.trim(),
             respostes: respostes,
             resposta_correcta: parseInt(form.resposta_correcta.value),
-            imatge: form.imatge.value.trim(),
+            imatge: form.imatge.files[0]
             };
 
             onSubmit(updatedData);

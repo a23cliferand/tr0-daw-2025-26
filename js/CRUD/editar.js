@@ -6,51 +6,39 @@ export function showEditarForm(data, onSubmit, principalList) {
         <h2>Editar Pregunta</h2>
         <form id="editarForm">
             <input type="hidden" id="id" name="id" value="${data.id || ''}">
-            <ul style="list-style: none; padding: 0;">
-                <li>
-                    <label for="pregunta">Pregunta:</label><br>
-                    <input type="text" id="pregunta" name="pregunta" value="${data.pregunta || ''}" required>
-                </li>
-                <li>
-                    <label>Respostes:</label>
-                    <ul style="list-style: none; padding-left: 1em;">
-                        <li>
-                            <label for="resposta1">Resposta 1:</label><br>
-                            <input type="text" id="resposta1" name="resposta1" value="${data.respostes && data.respostes[0].etiqueta ? data.respostes[0].etiqueta : ''}" required>
-                        </li>
-                        <li>
-                            <label for="resposta2">Resposta 2:</label><br>
-                            <input type="text" id="resposta2" name="resposta2" value="${data.respostes && data.respostes[1].etiqueta ? data.respostes[1].etiqueta : ''}" required>
-                        </li>
-                        <li>
-                            <label for="resposta3">Resposta 3:</label><br>
-                            <input type="text" id="resposta3" name="resposta3" value="${data.respostes && data.respostes[2].etiqueta ? data.respostes[2].etiqueta : ''}" required>
-                        </li>
-                        <li>
-                            <label for="resposta4">Resposta 4:</label><br>
-                            <input type="text" id="resposta4" name="resposta4" value="${data.respostes && data.respostes[3].etiqueta ? data.respostes[3].etiqueta : ''}" required>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <label for="resposta_correcta">Resposta Correcta (1-4):</label><br>
-                    <select id="resposta_correcta" name="resposta_correcta" required>
-                        <option value="1" ${data.resposta_correcta == 1 ? "selected" : ""}>1</option>
-                        <option value="2" ${data.resposta_correcta == 2 ? "selected" : ""}>2</option>
-                        <option value="3" ${data.resposta_correcta == 3 ? "selected" : ""}>3</option>
-                        <option value="4" ${data.resposta_correcta == 4 ? "selected" : ""}>4</option>
-                    </select>
-                </li>
-                <li>
-                    <label for="imatge">Imatge (URL):</label><br>
-                    <img src="../img/${data.imatge || ''}" alt="Imatge de la pregunta" style="max-width: 200px; display: block; margin-bottom: 0.5em;">
-                    <input type="text" id="imatge" name="imatge" value="${data.imatge || ''}" required>
-                </li>
-                <li style="margin-top: 1em;">
-                    <button type="submit">Guardar Cambios</button>
-                    <button type="button" id="cancelarEdicion">Cancelar</button>
-                </li>
-            </ul>
+            
+            <label for="pregunta">Pregunta:</label>
+            <input type="text" id="pregunta" name="pregunta" value="${data.pregunta || ''}" required>
+            
+            <label>Respostes:</label>
+            <div class="respostes-container">
+                <label for="resposta1">Resposta 1:</label>
+                <input type="text" id="resposta1" name="resposta1" value="${data.respostes && data.respostes[0].etiqueta ? data.respostes[0].etiqueta : ''}" required>
+                
+                <label for="resposta2">Resposta 2:</label>
+                <input type="text" id="resposta2" name="resposta2" value="${data.respostes && data.respostes[1].etiqueta ? data.respostes[1].etiqueta : ''}" required>
+                
+                <label for="resposta3">Resposta 3:</label>
+                <input type="text" id="resposta3" name="resposta3" value="${data.respostes && data.respostes[2].etiqueta ? data.respostes[2].etiqueta : ''}" required>
+                
+                <label for="resposta4">Resposta 4:</label>
+                <input type="text" id="resposta4" name="resposta4" value="${data.respostes && data.respostes[3].etiqueta ? data.respostes[3].etiqueta : ''}" required>
+            </div>
+            
+            <label for="resposta_correcta">Resposta Correcta (1-4):</label>
+            <select id="resposta_correcta" name="resposta_correcta" required>
+                <option value="1" ${data.resposta_correcta == 1 ? "selected" : ""}>1</option>
+                <option value="2" ${data.resposta_correcta == 2 ? "selected" : ""}>2</option>
+                <option value="3" ${data.resposta_correcta == 3 ? "selected" : ""}>3</option>
+                <option value="4" ${data.resposta_correcta == 4 ? "selected" : ""}>4</option>
+            </select>
+            
+            <label for="imatge">Imatge</label>
+            <img src="http://localhost:8080/img/${data.imatge}" alt="Imatge actual" style="max-width: 200px; display: 'block' : 'none'}; margin-bottom: 10px;">
+            <input type="file" id="imatge" name="imatge">
+            
+            <button type="submit">Guardar Cambios</button>
+            <button type="button" id="cancelarEdicion">Cancelar</button>
         </form>
     `;
 
@@ -61,7 +49,7 @@ export function showEditarForm(data, onSubmit, principalList) {
         e.preventDefault();
         try {
 
-            if (!form.pregunta.id || !form.resposta1.value.trim() || !form.resposta2.value.trim() || !form.resposta3.value.trim() || !form.resposta4.value.trim() || !form.imatge.value.trim()) {
+            if (!form.pregunta.id || !form.resposta1.value.trim() || !form.resposta2.value.trim() || !form.resposta3.value.trim() || !form.resposta4.value.trim()) {
                 alert("Por favor, completa todos los campos correctamente");
                 return;
             }
@@ -83,7 +71,7 @@ export function showEditarForm(data, onSubmit, principalList) {
                 pregunta: form.pregunta.value.trim(),
                 respostes: respostes,
                 resposta_correcta: parseInt(form.resposta_correcta.value),
-                imatge: form.imatge.value.trim(),
+                imatge: form.imatge.files[0]
             };
 
             onSubmit(updatedData);
