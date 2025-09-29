@@ -4,7 +4,7 @@ export function showCrearForm(onSubmit) {
     const crearContainer = document.getElementById("crear");
     crearContainer.innerHTML = `
         <h2>Crear Pregunta</h2>
-        <form id="crearForm">
+        <form id="crearForm" enctype="multipart/form-data">
             <label for="pregunta">Pregunta:</label>
             <input type="text" id="pregunta" name="pregunta" required>
             
@@ -31,8 +31,8 @@ export function showCrearForm(onSubmit) {
                 <option value="4">4</option>
             </select>
             
-            <label for="imatge">Imatge (URL):</label>
-            <input type="text" id="imatge" name="imatge" required>
+            <label for="imatge" required>Imatge:</label>
+            <input type="file" id="imatge" name="imatge" required>
             
             <button type="submit">Crear</button>
             <button type="button" id="cancelarCrear">Cancelar</button>
@@ -47,7 +47,7 @@ export function showCrearForm(onSubmit) {
         e.preventDefault();
         try {
 
-            if (!form.pregunta.id || !form.resposta1.value.trim() || !form.resposta2.value.trim() || !form.resposta3.value.trim() || !form.resposta4.value.trim() || !form.imatge.value.trim()) {
+            if (!form.pregunta.id || !form.resposta1.value.trim() || !form.resposta2.value.trim() || !form.resposta3.value.trim() || !form.resposta4.value.trim() || !form.imatge.files.length) {
                 alert("Por favor, completa todos los campos correctamente");
                 return;
             }
@@ -68,7 +68,7 @@ export function showCrearForm(onSubmit) {
             pregunta: form.pregunta.value.trim(),
             respostes: respostes,
             resposta_correcta: parseInt(form.resposta_correcta.value),
-            imatge: form.imatge.value.trim(),
+            imatge: form.imatge.files[0]
             };
 
             onSubmit(updatedData);

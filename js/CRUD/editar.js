@@ -33,8 +33,9 @@ export function showEditarForm(data, onSubmit, principalList) {
                 <option value="4" ${data.resposta_correcta == 4 ? "selected" : ""}>4</option>
             </select>
             
-            <label for="imatge">Imatge (URL):</label>
-            <input type="text" id="imatge" name="imatge" value="${data.imatge || ''}" required>
+            <label for="imatge">Imatge</label>
+            <img src="http://localhost:8080/img/${data.imatge}" alt="Imatge actual" style="max-width: 200px; display: 'block' : 'none'}; margin-bottom: 10px;">
+            <input type="file" id="imatge" name="imatge">
             
             <button type="submit">Guardar Cambios</button>
             <button type="button" id="cancelarEdicion">Cancelar</button>
@@ -48,7 +49,7 @@ export function showEditarForm(data, onSubmit, principalList) {
         e.preventDefault();
         try {
 
-            if (!form.pregunta.id || !form.resposta1.value.trim() || !form.resposta2.value.trim() || !form.resposta3.value.trim() || !form.resposta4.value.trim() || !form.imatge.value.trim()) {
+            if (!form.pregunta.id || !form.resposta1.value.trim() || !form.resposta2.value.trim() || !form.resposta3.value.trim() || !form.resposta4.value.trim()) {
                 alert("Por favor, completa todos los campos correctamente");
                 return;
             }
@@ -70,7 +71,7 @@ export function showEditarForm(data, onSubmit, principalList) {
                 pregunta: form.pregunta.value.trim(),
                 respostes: respostes,
                 resposta_correcta: parseInt(form.resposta_correcta.value),
-                imatge: form.imatge.value.trim(),
+                imatge: form.imatge.files[0]
             };
 
             onSubmit(updatedData);
