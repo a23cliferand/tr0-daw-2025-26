@@ -83,7 +83,7 @@ function startTimer() {
     }, 1000);
 }
 
-function stopTimer() {
+export function stopTimer() {
     clearInterval(timerInterval);
 }
 

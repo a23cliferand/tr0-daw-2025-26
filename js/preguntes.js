@@ -1,3 +1,6 @@
+import { finalGame } from "./final.js";
+import { stopTimer } from "./script.js";
+
 export function loadQuestion(globalData, currentQuestionIndex, saveAnswer, updateMarcador) {
     const question = globalData.preguntes[currentQuestionIndex];
     const contenidorQuestionari = document.getElementById("questionari");
@@ -7,7 +10,7 @@ export function loadQuestion(globalData, currentQuestionIndex, saveAnswer, updat
 
     let stringDataQuestionari = `
         <h3>${question.pregunta}</h3>
-        <img src='../img/${question.imatge}' alt='Pregunta ${question.id}'>
+        <center><img src='../img/${question.imatge}' alt='Pregunta ${question.id}'></center>
         <ul>
     `;
 
@@ -25,9 +28,12 @@ export function loadQuestion(globalData, currentQuestionIndex, saveAnswer, updat
     });
 
     stringDataQuestionari += `</ul>
-        <div class="navigation-buttons">
-            <button id="prevButton" style="display: ${currentQuestionIndex === 0 ? "none" : "inline-block"};">Anterior</button>
-            <button id="nextButton" style="display: ${currentQuestionIndex === globalData.preguntes.length - 1 ? "none" : "inline-block"};">Siguiente</button>
+        <div class="navigation-buttons" style="display: flex; justify-content: space-between; align-items: center;">
+            <button id="prevButton" style="visibility: ${currentQuestionIndex === 0 ? "hidden" : "visible"}; min-width: 100px;">Anterior</button>
+            <div style="display: flex; gap: 10px;">
+                <button id="nextButton" style="display: ${currentQuestionIndex === globalData.preguntes.length - 1 ? "none" : "inline-block"}; min-width: 100px;">Siguiente</button>
+                <button id="finalizarButton" style="display: ${currentQuestionIndex === globalData.preguntes.length - 1 ? "inline-block" : "none"}; min-width: 100px;">Finalizar</button>
+            </div>
         </div>
     `;
     contenidorQuestionari.innerHTML = stringDataQuestionari;
@@ -57,6 +63,11 @@ export function loadQuestion(globalData, currentQuestionIndex, saveAnswer, updat
         if (currentQuestionIndex < globalData.preguntes.length - 1) {
             loadQuestion(globalData, currentQuestionIndex + 1, saveAnswer, updateMarcador);
         }
+    });
+
+    document.getElementById("finalizarButton").addEventListener("click", () => {
+        stopTimer();
+        finalGame(globalData);
     });
 
     updateMarcador();
