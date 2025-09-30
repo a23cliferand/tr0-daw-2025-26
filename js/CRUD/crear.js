@@ -34,8 +34,10 @@ export function showCrearForm(onSubmit) {
             <label for="imatge" required>Imatge:</label>
             <input type="file" id="imatge" name="imatge" required>
             
+            <center>
             <button type="submit">Crear</button>
             <button type="button" id="cancelarCrear">Cancelar</button>
+            </center>
         </form>
     `;
 

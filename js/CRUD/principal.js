@@ -16,7 +16,7 @@ export function showPrincipalList(data, onEdit, onDelete, onCreate) {
                     (item) => `
                 <li>
                     ${item.pregunta}
-                    <img src='../img/${item.imatge}' alt='Pregunta ${item.id}' style='max-width: 200px; display: block; margin-top: 10px;'/>
+                    <img src='../img/${item.imatge}?t=${Date.now()}' alt='Pregunta ${item.id}' style='max-width: 200px; display: block; margin-top: 10px;'/>
                     <ul>
                         ${item.respostes
                             .map(
