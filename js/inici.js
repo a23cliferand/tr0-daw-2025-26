@@ -7,4 +7,12 @@ export function showStartScreen(startQuiz) {
     document.getElementById("marcador").innerHTML = "";
     document.getElementById("questionari").innerHTML = "";
     document.getElementById("final").innerHTML = "";
+
+    const partida = JSON.parse(localStorage.getItem("partida"));
+    if (partida && partida.currentQuestionIndex !== undefined && partida.resposta.length > 0) {
+        startQuiz(partida.currentQuestionIndex);
+    }
+    else {
+        localStorage.removeItem("preguntes");
+    }
 }

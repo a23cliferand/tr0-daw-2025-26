@@ -1,16 +1,20 @@
 import { finalGame } from "./final.js";
 import { stopTimer } from "./script.js";
 
+let URL = "http://localhost:8080";
+
 export function loadQuestion(globalData, currentQuestionIndex, saveAnswer, updateMarcador) {
     const question = globalData.preguntes[currentQuestionIndex];
     const contenidorQuestionari = document.getElementById("questionari");
 
     const partida = JSON.parse(localStorage.getItem("partida")) || {};
+    partida.currentQuestionIndex = currentQuestionIndex;
+    localStorage.setItem("partida", JSON.stringify(partida));
     const respuestasGuardadas = partida.resposta || [];
 
     let stringDataQuestionari = `
         <h3>${question.pregunta}</h3>
-        <center><img src='../img/${question.imatge}' alt='Pregunta ${question.id}'></center>
+        <center><img src='${URL}/img/${question.imatge}' alt='Pregunta ${question.id}'></center>
         <ul>
     `;
 

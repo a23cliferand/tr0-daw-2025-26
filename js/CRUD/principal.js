@@ -5,6 +5,8 @@ const principalContainer = document.getElementById("llista");
 const crearContainer = document.getElementById("crear");
 const editarContainer = document.getElementById("editar");
 
+let URL = "http://localhost:8080";
+
 export function showPrincipalList(data, onEdit, onDelete, onCreate) {
     principalContainer.innerHTML = `
         <h2>Llista de Preguntes</h2>
@@ -16,7 +18,7 @@ export function showPrincipalList(data, onEdit, onDelete, onCreate) {
                     (item) => `
                 <li>
                     ${item.pregunta}
-                    <img src='../img/${item.imatge}?t=${Date.now()}' alt='Pregunta ${item.id}' style='max-width: 200px; display: block; margin-top: 10px;'/>
+                    <img src='${URL}/img/${item.imatge}?t=${Date.now()}' alt='Pregunta ${item.id}' style='max-width: 200px; display: block; margin-top: 10px;'/>
                     <ul>
                         ${item.respostes
                             .map(

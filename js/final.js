@@ -1,3 +1,5 @@
+let URL = "http://localhost:8080";
+
 function showEndScreen(correccio) {
     document.getElementById("questionari").innerHTML = "";
     document.getElementById("marcador").innerHTML = "";
@@ -6,7 +8,7 @@ function showEndScreen(correccio) {
     final.innerHTML = `
         <h1>Has completat el qüestionari!</h1>
         <h2>Has encertat ${correccio.respostesCorrectes} de ${correccio.totalPreguntes} preguntes.</h2>
-        <button onclick="location.reload()">Tornar a començar</button>
+        <button onclick="reload()">Tornar a començar</button>
     `;
 }
 
@@ -21,7 +23,7 @@ async function finalCheck(globalData) {
 
 
     try {
-        const response = await fetch("http://localhost:8080/back/back.php?action=correccio", {
+        const response = await fetch(`${URL}/back/back.php?action=correccio`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -37,6 +39,15 @@ async function finalCheck(globalData) {
         return null;
     }
 }
+
+function reload() {
+    console.log("Reloading the quiz...");
+    localStorage.removeItem("partida");
+    localStorage.removeItem("preguntes");
+    location.reload();
+}
+
+window.reload = reload;
 
 export async function finalGame(globalData) {
     const correccio = await finalCheck(globalData);

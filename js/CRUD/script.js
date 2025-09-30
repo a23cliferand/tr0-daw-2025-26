@@ -4,9 +4,11 @@ import { showEditarForm } from "./editar.js";
 
 let data = [];
 
+let URL = "http://localhost:8080";
+
 export function fetchData() {
     console.log("Fetching data from server...");
-    fetch("http://localhost:8080/back/back.php?action=getData&quantitat=all")
+    fetch(`${URL}/back/back.php?action=getData&quantitat=all`)
         .then((response) => response.json())
         .then((result) => {
             data = result.preguntes;
@@ -26,7 +28,7 @@ function handleCreate(newData) {
         formData.append("imatge", newData.imatge);
     }
 
-    fetch("http://localhost:8080/back/back.php?action=crearPregunta", {
+    fetch(`${URL}/back/back.php?action=crearPregunta`, {
         method: "POST",
         body: formData,
     }).then(() => fetchData());
@@ -46,14 +48,14 @@ function handleEdit(updatedData) {
         formData.append("imatge", updatedData.imatge);
     }
 
-    fetch("http://localhost:8080/back/back.php?action=editarPregunta", {
+    fetch(`${URL}/back/back.php?action=editarPregunta`, {
         method: "POST",
         body: formData,
     }).then(() => fetchData());
 }
 
 function handleDelete(id) {
-    fetch("http://localhost:8080/back/back.php?action=esborrarPregunta", {
+    fetch(`${URL}/back/back.php?action=esborrarPregunta`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id }),

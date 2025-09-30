@@ -1,5 +1,7 @@
 import { showAll } from "./principal.js";
 
+let URL = "http://localhost:8080";
+
 export function showEditarForm(data, onSubmit, principalList) {
     const editarContainer = document.getElementById("editar");
     editarContainer.innerHTML = `
@@ -34,7 +36,7 @@ export function showEditarForm(data, onSubmit, principalList) {
             </select>
             
             <label for="imatge">Imatge</label><br>
-            <img src="http://localhost:8080/img/${data.imatge}" alt="Imatge actual" style="max-width: 200px; display: 'block' : 'none'}; margin-bottom: 10px;">
+            <img src="${URL}/img/${data.imatge}" alt="Imatge actual" style="max-width: 200px; display: 'block' : 'none'}; margin-bottom: 10px;">
             <input type="file" id="imatge" name="imatge">
             <center>
             <button type="submit">Guardar Cambios</button>

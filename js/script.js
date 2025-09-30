@@ -9,6 +9,8 @@ let estatDeLaPartida = { resposta: [], temps: 30 };
 let currentQuestionIndex = 0;
 let timerInterval;
 
+let URL = "http://localhost:8080";
+
 
 function getPartidaFromStorage() {
     const partida = localStorage.getItem("partida");
@@ -23,7 +25,17 @@ function savePartidaToStorage(partida) {
 
 // Iniciar el qüestionari
 function startQuiz() {
-    savePartidaToStorage(estatDeLaPartida);
+    const partida = localStorage.getItem("partida");
+    if (partida) {
+        const parsedPartida = JSON.parse(partida);
+        if (parsedPartida.resposta && parsedPartida.resposta.length > 0) {
+            estatDeLaPartida = parsedPartida;
+        } else {
+            savePartidaToStorage(estatDeLaPartida);
+        }
+    } else {
+        savePartidaToStorage(estatDeLaPartida);
+    }
 
     startTimer();
 
@@ -88,12 +100,22 @@ export function stopTimer() {
 }
 
 window.addEventListener("DOMContentLoaded", (event) => {
-    fetch("http://localhost:8080/back/back.php?action=getData&quantitat=10")
-        .then((response) => response.json())
-        .then((data) => {
-            globalData = data;
-            showStartScreen(startQuiz);
-        });
+    const savedQuestions = localStorage.getItem("preguntes");
+
+    if (savedQuestions) {
+        globalData = JSON.parse(savedQuestions);
+        estatDeLaPartida = getPartidaFromStorage();
+        currentQuestionIndex = estatDeLaPartida.resposta.length;
+        showStartScreen(startQuiz);
+    } else {
+        fetch(`${URL}/back/back.php?action=getData&quantitat=10`)
+            .then((response) => response.json())
+            .then((data) => {
+                globalData = data;
+                localStorage.setItem("preguntes", JSON.stringify(globalData));
+                showStartScreen(startQuiz);
+            });
+    }
 });
 
 window.startQuiz = startQuiz;
