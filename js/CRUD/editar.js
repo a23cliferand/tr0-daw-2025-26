@@ -75,9 +75,9 @@ export function showEditarForm(data, onSubmit, principalList) {
             };
 
             onSubmit(updatedData);
+            showAll();
             editarContainer.style.display = "none";
             editarContainer.innerHTML = "";
-            showAll();
         } catch (error) {
             alert("Error al procesar los datos. Por favor, verifica que todos los campos estén completos.");
             console.error("Error al enviar los datos:", error);
@@ -85,9 +85,9 @@ export function showEditarForm(data, onSubmit, principalList) {
     });
 
     cancelButton.addEventListener("click", () => {
+        showAll();
         editarContainer.style.display = "none";
         editarContainer.innerHTML = "";
-        showAll();
     });
 
     editarContainer.style.display = "block";

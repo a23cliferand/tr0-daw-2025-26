@@ -1,4 +1,5 @@
 import { showCrearForm } from "./crear.js";
+import { fetchData } from "./script.js";
 
 const principalContainer = document.getElementById("llista");
 const crearContainer = document.getElementById("crear");
@@ -7,6 +8,7 @@ const editarContainer = document.getElementById("editar");
 export function showPrincipalList(data, onEdit, onDelete, onCreate) {
     principalContainer.innerHTML = `
         <h2>Llista de Preguntes</h2>
+        <center>
         <button class="create-button">Crear Nueva Pregunta</button>
         <ul>
             ${data
@@ -14,6 +16,7 @@ export function showPrincipalList(data, onEdit, onDelete, onCreate) {
                     (item) => `
                 <li>
                     ${item.pregunta}
+                    <img src='../img/${item.imatge}' alt='Pregunta ${item.id}' style='max-width: 200px; display: block; margin-top: 10px;'/>
                     <ul>
                         ${item.respostes
                             .map(
@@ -30,6 +33,7 @@ export function showPrincipalList(data, onEdit, onDelete, onCreate) {
                 )
                 .join("")}
         </ul>
+        </center>
     `;
 
     const crearButton = principalContainer.querySelectorAll(".create-button");
@@ -63,6 +67,7 @@ export function showPrincipalList(data, onEdit, onDelete, onCreate) {
 }
 
 export function showAll() {
+    fetchData();
     principalContainer.style.display = "block";
     crearContainer.style.display = "none";
     editarContainer.style.display = "none";

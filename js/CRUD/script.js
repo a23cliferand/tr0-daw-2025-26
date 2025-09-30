@@ -4,7 +4,8 @@ import { showEditarForm } from "./editar.js";
 
 let data = [];
 
-function fetchData() {
+export function fetchData() {
+    console.log("Fetching data from server...");
     fetch("http://localhost:8080/back/back.php?action=getData&quantitat=all")
         .then((response) => response.json())
         .then((result) => {
