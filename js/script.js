@@ -9,7 +9,7 @@ let estatDeLaPartida = { resposta: [], temps: 30 };
 let currentQuestionIndex = 0;
 let timerInterval;
 
-let URL = "http://localhost:8080";
+let URL = "http://a23cliferand.daw.inspedralbes.cat/tr0";
 
 
 function getPartidaFromStorage() {

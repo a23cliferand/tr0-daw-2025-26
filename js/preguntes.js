@@ -1,7 +1,7 @@
 import { finalGame } from "./final.js";
 import { stopTimer } from "./script.js";
 
-let URL = "http://localhost:8080";
+let URL = "http://a23cliferand.daw.inspedralbes.cat/tr0";
 
 export function loadQuestion(globalData, currentQuestionIndex, saveAnswer, updateMarcador) {
     const question = globalData.preguntes[currentQuestionIndex];

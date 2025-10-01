@@ -4,7 +4,7 @@ import { showEditarForm } from "./editar.js";
 
 let data = [];
 
-let URL = "http://localhost:8080";
+let URL = "http://a23cliferand.daw.inspedralbes.cat/tr0";
 
 export function fetchData() {
     console.log("Fetching data from server...");

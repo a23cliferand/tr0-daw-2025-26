@@ -1,10 +1,10 @@
 <?php
 
 class Conexio {
-    private $servername = "TR0_DB";
-    private $username = "root";
-    private $password = "Jupiter1";
-    private $database = "tr0_db";
+    private $servername = "localhost:3306";
+    private $username = "a23cliferand_root";
+    private $password = "2kjQrFKk8cssXOOSUihQ";
+    private $database = "a23cliferand_tr0";
     private $conn;
 
     public function __construct() {

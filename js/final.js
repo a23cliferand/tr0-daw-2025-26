@@ -1,4 +1,4 @@
-let URL = "http://localhost:8080";
+let URL = "http://a23cliferand.daw.inspedralbes.cat/tr0";
 
 function showEndScreen(correccio) {
     document.getElementById("questionari").innerHTML = "";

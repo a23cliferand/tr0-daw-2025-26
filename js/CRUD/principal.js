@@ -5,7 +5,7 @@ const principalContainer = document.getElementById("llista");
 const crearContainer = document.getElementById("crear");
 const editarContainer = document.getElementById("editar");
 
-let URL = "http://localhost:8080";
+let URL = "http://a23cliferand.daw.inspedralbes.cat/tr0";
 
 export function showPrincipalList(data, onEdit, onDelete, onCreate) {
     principalContainer.innerHTML = `
