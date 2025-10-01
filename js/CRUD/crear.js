@@ -4,7 +4,7 @@ export function showCrearForm(onSubmit) {
     const crearContainer = document.getElementById("crear");
     crearContainer.innerHTML = `
         <h2>Crear Pregunta</h2>
-        <form id="crearForm" enctype="multipart/form-data">
+        <form class="crud" id="crearForm" enctype="multipart/form-data">
             <label for="pregunta">Pregunta:</label>
             <input type="text" id="pregunta" name="pregunta" required>
             

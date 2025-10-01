@@ -5,8 +5,8 @@ let URL = "http://localhost:8080";
 export function showEditarForm(data, onSubmit, principalList) {
     const editarContainer = document.getElementById("editar");
     editarContainer.innerHTML = `
-        <h2>Editar Pregunta</h2>
-        <form id="editarForm">
+        <h2>Editar Pregunta ${data.id}</h2>
+        <form class="crud" id="editarForm">
             <input type="hidden" id="id" name="id" value="${data.id || ''}">
             
             <label for="pregunta">Pregunta:</label>
@@ -16,13 +16,13 @@ export function showEditarForm(data, onSubmit, principalList) {
             <div class="respostes-container">
                 <label for="resposta1">Resposta 1:</label>
                 <input type="text" id="resposta1" name="resposta1" value="${data.respostes && data.respostes[0].etiqueta ? data.respostes[0].etiqueta : ''}" required>
-                
+
                 <label for="resposta2">Resposta 2:</label>
                 <input type="text" id="resposta2" name="resposta2" value="${data.respostes && data.respostes[1].etiqueta ? data.respostes[1].etiqueta : ''}" required>
-                
+
                 <label for="resposta3">Resposta 3:</label>
                 <input type="text" id="resposta3" name="resposta3" value="${data.respostes && data.respostes[2].etiqueta ? data.respostes[2].etiqueta : ''}" required>
-                
+
                 <label for="resposta4">Resposta 4:</label>
                 <input type="text" id="resposta4" name="resposta4" value="${data.respostes && data.respostes[3].etiqueta ? data.respostes[3].etiqueta : ''}" required>
             </div>
@@ -36,7 +36,7 @@ export function showEditarForm(data, onSubmit, principalList) {
             </select>
             
             <label for="imatge">Imatge</label><br>
-            <img src="${URL}/img/${data.imatge}" alt="Imatge actual" style="max-width: 200px; display: 'block' : 'none'}; margin-bottom: 10px;">
+            <img src="${URL}/img/${data.imatge}?t=${Date.now()}" alt="Imatge actual" style="max-width: 200px; display: 'block' : 'none'}; margin-bottom: 10px;">
             <input type="file" id="imatge" name="imatge">
             <center>
             <button type="submit">Guardar Cambios</button>

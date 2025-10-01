@@ -16,14 +16,14 @@ export function showPrincipalList(data, onEdit, onDelete, onCreate) {
             ${data
                 .map(
                     (item) => `
-                <li>
+                <li class="crud">
                     ${item.pregunta}
                     <img src='${URL}/img/${item.imatge}?t=${Date.now()}' alt='Pregunta ${item.id}' style='max-width: 200px; display: block; margin-top: 10px;'/>
                     <ul>
                         ${item.respostes
                             .map(
                                 (resposta) => `
-                                <li>${resposta.id == item.resposta_correcta ? `<strong>${resposta.etiqueta}</strong>` : resposta.etiqueta}</li>
+                                <li style="border: 1px solid #ccc; border-radius: 10px; padding: 5px 0;">${resposta.id == item.resposta_correcta ? `<strong>${resposta.etiqueta}</strong>` : resposta.etiqueta}</li>
                             `
                             )
                             .join("")}

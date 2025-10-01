@@ -8,6 +8,7 @@ try {
     $conn = $conexio->getConnection();
 
     $respostesCorrectes = 0;
+    $detallRespostesCorrectes = [];
 
     foreach ($respostes as $resposta) {
         $idPregunta = (int)$resposta['p'];
@@ -19,9 +20,14 @@ try {
         $result = $stmt->get_result();
 
         if ($row = $result->fetch_assoc()) {
-            if ((int)$row['resposta_correcta'] === $respostaUsuari) {
+            $respostaCorrecta = (int)$row['resposta_correcta'];
+            if ($respostaCorrecta === $respostaUsuari) {
                 $respostesCorrectes++;
             }
+            $detallRespostesCorrectes[] = [
+                'id' => $idPregunta,
+                'correcta' => $respostaCorrecta
+            ];
         }
         $stmt->close();
     }
@@ -30,7 +36,8 @@ try {
     $totalPreguntes = count($respostes);
     echo json_encode([
         'respostesCorrectes' => $respostesCorrectes,
-        'totalPreguntes' => $totalPreguntes
+        'totalPreguntes' => $totalPreguntes,
+        'detallRespostesCorrectes' => $detallRespostesCorrectes
     ]);
 
 } catch (Exception $e) {
