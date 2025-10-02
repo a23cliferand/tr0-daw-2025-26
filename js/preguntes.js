@@ -12,12 +12,14 @@ export function loadQuestion(globalData, currentQuestionIndex, saveAnswer, updat
     localStorage.setItem("partida", JSON.stringify(partida));
     const respuestasGuardadas = partida.resposta || [];
 
+    // Crea una cadena per la pregunta
     let stringDataQuestionari = `
         <h3>${question.pregunta}</h3>
         <center><img src='${URL}/img/${question.imatge}' alt='Pregunta ${question.id}'></center>
         <ul>
     `;
 
+    // Afegir les respostes com a botons
     question.respostes.forEach((resposta, index) => {
         const isSelected = respuestasGuardadas.some(
             (r) => r.p === question.id && r.r === resposta.id
@@ -31,6 +33,7 @@ export function loadQuestion(globalData, currentQuestionIndex, saveAnswer, updat
         `;
     });
 
+    // Afegir botons de navegació
     stringDataQuestionari += `</ul>
         <div class="navigation-buttons" style="display: flex; justify-content: space-between; align-items: center;">
             <button id="prevButton" style="visibility: ${currentQuestionIndex === 0 ? "hidden" : "visible"}; min-width: 100px;">Anterior</button>
@@ -42,6 +45,7 @@ export function loadQuestion(globalData, currentQuestionIndex, saveAnswer, updat
     `;
     contenidorQuestionari.innerHTML = stringDataQuestionari;
 
+    // Afegir esdevenidors als botons de resposta
     const buttons = contenidorQuestionari.querySelectorAll(".answer-button");
     buttons.forEach((button, index) => {
         button.addEventListener("click", () => {

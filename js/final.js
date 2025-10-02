@@ -7,7 +7,7 @@ function showEndScreen(correccio, globalData) {
     document.getElementById("questionari").innerHTML = "";
     document.getElementById("marcador").innerHTML = "";
 
-    // Muestra resumen final
+    // Mostre el resum final
     const final = document.getElementById("final");
     final.innerHTML = `
         <h1>Has completat el qüestionari!</h1>
@@ -18,6 +18,7 @@ function showEndScreen(correccio, globalData) {
 
     const correccioContainer = document.getElementById("correccio-container");
 
+    // Mostra les preguntes amb les respostes correctes i les respostes de l'usuari
     globalData.preguntes.forEach((pregunta) => {
         const respostaBackend = correccio.detallRespostesCorrectes.find(
             (resposta) => Number(resposta.id) === Number(pregunta.id)
@@ -61,11 +62,13 @@ function showEndScreen(correccio, globalData) {
     });
 }
 
+// Envia les respostes al backend per a la correcció
 async function finalCheck(globalData) {
     const partida = JSON.parse(localStorage.getItem("partida"));
     const respostes = partida.resposta;
     console.log("Respostes enviades al backend:", respostes);
 
+    // Completa les respostes amb preguntes no contestades amb un 0
     for (let i = respostes.length; i < globalData.preguntes.length; i++) {
         respostes.push({ p: globalData.preguntes[i].id, r: 0 });
     }
@@ -88,6 +91,7 @@ async function finalCheck(globalData) {
     }
 }
 
+// Reinicia el qüestionari
 function reload() {
     localStorage.removeItem("partida");
     localStorage.removeItem("preguntes");
@@ -96,6 +100,7 @@ function reload() {
 
 window.reload = reload;
 
+// Funció principal per finalitzar el joc
 export async function finalGame(globalData) {
     const correccio = await finalCheck(globalData);
     showEndScreen(correccio, globalData);

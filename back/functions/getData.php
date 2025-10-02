@@ -14,6 +14,7 @@ try {
 
     $preguntes = $result->fetch_all(MYSQLI_ASSOC);
 
+    // Formatejar les preguntes amb les respostes en un array per adaptar-les al json original
     $preguntesFormatted = [];
     foreach ($preguntes as $pregunta) {
         $preguntaFormatted = [
@@ -31,9 +32,11 @@ try {
         $preguntesFormatted[] = $preguntaFormatted;
     }
 
+    // Si es demanen totes les preguntes, no cal filtrar ni desar a sessió
     if($quantitat == "all"){
         echo json_encode(["preguntes" => $preguntesFormatted], JSON_UNESCAPED_UNICODE);
     }
+    // Si es demana una quantitat específica, seleccionar aleatòriament
     else{
         $quantitat = intval($quantitat);
         if (count($preguntesFormatted) >= $quantitat) {

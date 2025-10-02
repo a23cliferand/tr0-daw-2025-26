@@ -2,6 +2,7 @@ import { showAll } from "./principal.js";
 
 let URL = "http://localhost:8080";
 
+// Mostra el formulari per editar una pregunta existent
 export function showEditarForm(data, onSubmit, principalList) {
     const editarContainer = document.getElementById("editar");
     editarContainer.innerHTML = `
@@ -48,6 +49,7 @@ export function showEditarForm(data, onSubmit, principalList) {
     const form = document.getElementById("editarForm");
     const cancelButton = document.getElementById("cancelarEdicion");
 
+    // Gestiona l'enviament del formulari
     form.addEventListener("submit", (e) => {
         e.preventDefault();
         try {
@@ -87,6 +89,7 @@ export function showEditarForm(data, onSubmit, principalList) {
         }
     });
 
+    // Gestiona el botó de cancel·lar
     cancelButton.addEventListener("click", () => {
         showAll();
         editarContainer.style.display = "none";

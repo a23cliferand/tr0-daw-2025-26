@@ -4,6 +4,11 @@ import { finalGame } from "./final.js";
 
 console.log("Hola");
 
+// global Data = Preguntes
+// estatDeLaPartida = {resposta: Respostes de l'usuari, temps: Temps de la partida}
+// currentQuestionIndex = Índex de la pregunta actual
+// timerInterval = Interval del temporitzador
+
 let globalData;
 let estatDeLaPartida = { resposta: [], temps: 30 };
 let currentQuestionIndex = 0;
@@ -11,12 +16,13 @@ let timerInterval;
 
 let URL = "http://localhost:8080";
 
-
+// Recupera l'estat de la partida desat al localStorage
 function getPartidaFromStorage() {
     const partida = localStorage.getItem("partida");
     return partida ? JSON.parse(partida) : estatDeLaPartida;
 }
 
+// Desa l'estat de la partida al localStorage
 function savePartidaToStorage(partida) {
     localStorage.setItem("partida", JSON.stringify(partida));
 }
@@ -48,6 +54,7 @@ function startQuiz() {
     loadQuestion(globalData, currentQuestionIndex, saveAnswer, updateMarcador);
 }
 
+// Desa la resposta de l'usuari i carrega la següent pregunta o finalitza el qüestionari
 function saveAnswer(i, j) {
     const question = globalData.preguntes[i];
     
@@ -67,6 +74,7 @@ function saveAnswer(i, j) {
     }
 }
 
+// Mostra la correcció final amb les respostes correctes i les respostes de l'usuari
 function updateMarcador() {
     const partida = getPartidaFromStorage();
     const contenidorMarcador = document.getElementById("marcador");
@@ -80,6 +88,7 @@ function updateMarcador() {
     `; 
 }
 
+// Inicia el temporitzador
 function startTimer() {
     timerInterval = setInterval(() => {
         estatDeLaPartida = getPartidaFromStorage();
@@ -98,10 +107,12 @@ function startTimer() {
     }, 1000);
 }
 
+// Atura el temporitzador
 export function stopTimer() {
     clearInterval(timerInterval);
 }
 
+// Carrega les preguntes i mostra la pantalla d'inici al principi
 window.addEventListener("DOMContentLoaded", (event) => {
     const savedQuestions = localStorage.getItem("preguntes");
 

@@ -7,6 +7,7 @@ const editarContainer = document.getElementById("editar");
 
 let URL = "http://localhost:8080";
 
+// Mostra la llista principal de preguntes amb opcions per editar i eliminar
 export function showPrincipalList(data, onEdit, onDelete, onCreate) {
     principalContainer.innerHTML = `
         <h2>Llista de Preguntes</h2>
@@ -38,6 +39,7 @@ export function showPrincipalList(data, onEdit, onDelete, onCreate) {
         </center>
     `;
 
+    // Afegeix esdevenidors als botons
     const crearButton = principalContainer.querySelectorAll(".create-button");
     crearButton.forEach((button) => {
         button.addEventListener("click", () => {
@@ -46,6 +48,7 @@ export function showPrincipalList(data, onEdit, onDelete, onCreate) {
         });
     });
 
+    // Afegeix esdevenidors als botons d'editar i eliminar 
     const editButtons = principalContainer.querySelectorAll(".edit-button");
     editButtons.forEach((button) => {
         button.addEventListener("click", () => {
@@ -57,6 +60,7 @@ export function showPrincipalList(data, onEdit, onDelete, onCreate) {
         });
     });
 
+    // Afegeix esdevenidors als botons de eliminar
     const deleteButtons = principalContainer.querySelectorAll(".delete-button");
     deleteButtons.forEach((button) => {
         button.addEventListener("click", () => {
@@ -68,6 +72,7 @@ export function showPrincipalList(data, onEdit, onDelete, onCreate) {
     });
 }
 
+// Funció per mostrar la vista principal i amagar les altres vistes
 export function showAll() {
     fetchData();
     principalContainer.style.display = "block";

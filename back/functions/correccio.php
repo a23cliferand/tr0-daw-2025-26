@@ -4,12 +4,14 @@ require_once 'conexio.php';
 $respostes = json_decode(file_get_contents('php://input'), true) ?? [];
 
 try {
+    //Conexio
     $conexio = new Conexio();
     $conn = $conexio->getConnection();
 
     $respostesCorrectes = 0;
     $detallRespostesCorrectes = [];
 
+    // Query per cada resposta del usuari
     foreach ($respostes as $resposta) {
         $idPregunta = (int)$resposta['p'];
         $respostaUsuari = (int)$resposta['r'];
@@ -34,6 +36,8 @@ try {
 
     $conexio->close();
     $totalPreguntes = count($respostes);
+    // Retornem el resultat en format JSON
+    // detallRespostesCorrectes: [{ "id": x, "correcta": 2}, ...]
     echo json_encode([
         'respostesCorrectes' => $respostesCorrectes,
         'totalPreguntes' => $totalPreguntes,

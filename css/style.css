@@ -17,7 +17,7 @@ body {
     min-height: 100vh;
 }
 
-/* Contenedores principales - solo muestran estilo si tienen contenido */
+/* Contenidors principals */
 #inici:not(:empty),
 #marcador:not(:empty),
 #temps:not(:empty),
@@ -32,14 +32,14 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-/* Títulos */
+/* Títols */
 h1, h2, h3 {
     margin-bottom: 15px;
     color: #2c3e50;
     text-align: center;
 }
 
-/* Botones */
+/* Botons */
 button.finalizarButton {
     background-color: #e74c3c;
 }
@@ -62,7 +62,7 @@ button:hover {
     background-color: #2980b9;
 }
 
-/* Lista de respuestas */
+/* Llistes de respostes */
 ul {
     list-style: none;
 }
@@ -100,6 +100,7 @@ select {
     background-color: #f8f9fa;
     transition: border-color 0.2s, box-shadow 0.2s;
 }
+/* Respostes */
 
 .answer-button {
     width: 100%;
@@ -135,6 +136,8 @@ select {
     color: #721c24;
     font-weight: bold;
 }
+
+/* Contenidor CRUD */
 
 .crud {
     margin: 20px;

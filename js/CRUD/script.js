@@ -6,6 +6,7 @@ let data = [];
 
 let URL = "http://localhost:8080";
 
+// Funció per obtenir les dades del servidor
 export function fetchData() {
     console.log("Fetching data from server...");
     fetch(`${URL}/back/back.php?action=getData&quantitat=all`)
@@ -16,6 +17,7 @@ export function fetchData() {
         });
 }
 
+// Funció per crear una nova pregunta
 function handleCreate(newData) {
     console.log("Creating new data:", newData);
     const formData = new FormData();
@@ -34,7 +36,7 @@ function handleCreate(newData) {
     }).then(() => fetchData());
 }
 
-
+// Funció per editar una pregunta existent
 function handleEdit(updatedData) {
     console.log("Editing data:", updatedData);
     const formData = new FormData();
@@ -54,6 +56,7 @@ function handleEdit(updatedData) {
     }).then(() => fetchData());
 }
 
+// Funció per esborrar una pregunta
 function handleDelete(id) {
     fetch(`${URL}/back/back.php?action=esborrarPregunta`, {
         method: "DELETE",
@@ -62,6 +65,7 @@ function handleDelete(id) {
     }).then(() => fetchData());
 }
 
+// Mostra la correcció final amb les respostes correctes i les respostes de l'usuari
 window.addEventListener("DOMContentLoaded", () => {
     fetchData();
 
