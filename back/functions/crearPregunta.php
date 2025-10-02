@@ -6,6 +6,7 @@ $conn = $conexion->getConnection();
 $data = $_POST;
 $image = $_FILES['imatge'] ?? null;
 
+// Suport per a respostes en format array o com a camps individuals
 $respostes = isset($data['respostes']) ? json_decode($data['respostes'], true) : [];
 if (is_array($respostes)) {
     $resposta1 = $respostes[0]['etiqueta'] ?? '';
@@ -19,8 +20,11 @@ if (is_array($respostes)) {
     $resposta4 = $data['resposta4'] ?? '';
 }
 
-if (!isset($data['pregunta'], $data['resposta_correcta']) || 
-    !!empty($resposta1) || empty($resposta2) || empty($resposta3) || empty($resposta4) || !$image) {
+// Validació bàsica
+if (
+    !isset($data['pregunta'], $data['resposta_correcta']) ||
+    !!empty($resposta1) || empty($resposta2) || empty($resposta3) || empty($resposta4) || !$image
+) {
     http_response_code(400);
     echo json_encode([
         'error' => 'Missing required fields',
@@ -30,11 +34,10 @@ if (!isset($data['pregunta'], $data['resposta_correcta']) ||
     exit;
 }
 
+// Pujar la imatge
 $uploadDir = __DIR__ . '/../../img/';
-if (!is_dir($uploadDir)) {
-    mkdir($uploadDir, 0777, true);
-}
 
+// Guardar la imatge amb un nom temporal
 $uploadFile = $uploadDir . basename($image['name']);
 if (!move_uploaded_file($image['tmp_name'], $uploadFile)) {
     http_response_code(500);
@@ -45,6 +48,7 @@ if (!move_uploaded_file($image['tmp_name'], $uploadFile)) {
 $imageName = basename($image['name']);
 
 try {
+    // Inserir la pregunta a la base de dades
     $stmt = $conn->prepare("INSERT INTO preguntes (pregunta, resposta1, resposta2, resposta3, resposta4, resposta_correcta, imatge) VALUES (?, ?, ?, ?, ?, ?, ?)");
     $stmt->bind_param(
         "sssssis",
@@ -57,6 +61,7 @@ try {
         $imageName
     );
 
+    // Actualitzar el nom de la imatge després d'obtenir l'ID
     if ($stmt->execute()) {
         $newId = $conn->insert_id;
         $newImageName = $newId . '.png';
@@ -88,3 +93,4 @@ try {
 } finally {
     $conexion->close();
 }
+?>

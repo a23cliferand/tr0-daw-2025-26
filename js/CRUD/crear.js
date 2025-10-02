@@ -1,10 +1,11 @@
 import { showAll } from "./principal.js";
 
+// Mostra el formulari per crear una nova pregunta
 export function showCrearForm(onSubmit) {
-    const crearContainer = document.getElementById("crear");
-    crearContainer.innerHTML = `
+  const crearContainer = document.getElementById("crear");
+  crearContainer.innerHTML = `
         <h2>Crear Pregunta</h2>
-        <form id="crearForm" enctype="multipart/form-data">
+        <form class="crud" id="crearForm" enctype="multipart/form-data">
             <label for="pregunta">Pregunta:</label>
             <input type="text" id="pregunta" name="pregunta" required>
             
@@ -36,58 +37,71 @@ export function showCrearForm(onSubmit) {
             
             <center>
             <button type="submit">Crear</button>
-            <button type="button" id="cancelarCrear">Cancelar</button>
+            <button type="button" id="cancelarCrear">Cancel·lar</button>
             </center>
         </form>
     `;
 
-    const form = document.getElementById("crearForm");
-    const cancelButton = document.getElementById("cancelarCrear");
+  const form = document.getElementById("crearForm");
+  const cancelButton = document.getElementById("cancelarCrear");
 
+  // Gestiona l'enviament del formulari
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    try {
+      if (
+        !form.pregunta.id ||
+        !form.resposta1.value.trim() ||
+        !form.resposta2.value.trim() ||
+        !form.resposta3.value.trim() ||
+        !form.resposta4.value.trim() ||
+        !form.imatge.files.length
+      ) {
+        alert("Si us plau, completa tots els camps correctament");
+        return;
+      }
 
-    form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        try {
+      if (
+        isNaN(form.resposta_correcta.value) ||
+        form.resposta_correcta.value < 1 ||
+        form.resposta_correcta.value > 4
+      ) {
+        alert("La resposta correcta ha de ser un número entre 1 i 4");
+        return;
+      }
 
-            if (!form.pregunta.id || !form.resposta1.value.trim() || !form.resposta2.value.trim() || !form.resposta3.value.trim() || !form.resposta4.value.trim() || !form.imatge.files.length) {
-                alert("Por favor, completa todos los campos correctamente");
-                return;
-            }
+      // Recopila les dades del formulari
+      const respostes = [
+        { id: 1, etiqueta: form.resposta1.value.trim() },
+        { id: 2, etiqueta: form.resposta2.value.trim() },
+        { id: 3, etiqueta: form.resposta3.value.trim() },
+        { id: 4, etiqueta: form.resposta4.value.trim() },
+      ];
 
-            if(isNaN(form.resposta_correcta.value) || form.resposta_correcta.value < 1 || form.resposta_correcta.value > 4) {
-                alert("La respuesta correcta debe ser un número entre 1 y 4");
-                return;
-            }
+      const updatedData = {
+        pregunta: form.pregunta.value.trim(),
+        respostes: respostes,
+        resposta_correcta: parseInt(form.resposta_correcta.value),
+        imatge: form.imatge.files[0],
+      };
 
-            const respostes = [
-            { id: 1, etiqueta: form.resposta1.value.trim() },
-            { id: 2, etiqueta: form.resposta2.value.trim() },
-            { id: 3, etiqueta: form.resposta3.value.trim() },
-            { id: 4, etiqueta: form.resposta4.value.trim() }
-            ];
+      onSubmit(updatedData);
+    } catch (error) {
+      console.error("Error:", error);
+      alert(
+        "Error al processar les dades. Si us plau, verifica que tots els camps estiguin complets."
+      );
+    }
 
-            const updatedData = {
-            pregunta: form.pregunta.value.trim(),
-            respostes: respostes,
-            resposta_correcta: parseInt(form.resposta_correcta.value),
-            imatge: form.imatge.files[0]
-            };
+    crearContainer.innerHTML = "";
+    showAll();
+  });
+  // Gestiona el botó de cancel·lar
+  cancelButton.addEventListener("click", () => {
+    crearContainer.style.display = "none";
+    crearContainer.innerHTML = "";
+    showAll();
+  });
 
-            onSubmit(updatedData);
-        } catch (error) {
-            console.error("Error al procesar el formulario:", error);
-            alert("Ocurrió un error al procesar el formulario. Por favor, inténtalo de nuevo.");
-        }
-
-        crearContainer.innerHTML = "";
-        showAll();
-    });
-
-    cancelButton.addEventListener("click", () => {
-        crearContainer.style.display = "none";
-        crearContainer.innerHTML = "";
-        showAll();
-    });
-
-    crearContainer.style.display = "block";
+  crearContainer.style.display = "block";
 }

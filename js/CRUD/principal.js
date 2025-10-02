@@ -7,70 +7,87 @@ const editarContainer = document.getElementById("editar");
 
 let URL = "http://a23cliferand.daw.inspedralbes.cat/tr0";
 
+// Mostra la llista principal de preguntes amb opcions per editar i eliminar
 export function showPrincipalList(data, onEdit, onDelete, onCreate) {
-    principalContainer.innerHTML = `
+  principalContainer.innerHTML = `
         <h2>Llista de Preguntes</h2>
         <center>
-        <button class="create-button">Crear Nueva Pregunta</button>
+        <button class="create-button">Crear Nova Pregunta</button>
         <ul>
             ${data
-                .map(
-                    (item) => `
-                <li>
+              .map(
+                (item) => `
+                <li class="crud">
                     ${item.pregunta}
-                    <img src='${URL}/img/${item.imatge}?t=${Date.now()}' alt='Pregunta ${item.id}' style='max-width: 200px; display: block; margin-top: 10px;'/>
+                    <img src='${URL}/img/${
+                  item.imatge
+                }?t=${Date.now()}' alt='Pregunta ${
+                  item.id
+                }' style='max-width: 200px; display: block; margin-top: 10px;'/>
                     <ul>
                         ${item.respostes
-                            .map(
-                                (resposta) => `
-                                <li>${resposta.id == item.resposta_correcta ? `<strong>${resposta.etiqueta}</strong>` : resposta.etiqueta}</li>
+                          .map(
+                            (resposta) => `
+                                <li style="border: 1px solid #ccc; border-radius: 10px; padding: 5px 0;">${
+                                  resposta.id == item.resposta_correcta
+                                    ? `<strong>${resposta.etiqueta}</strong>`
+                                    : resposta.etiqueta
+                                }</li>
                             `
-                            )
-                            .join("")}
+                          )
+                          .join("")}
                     </ul>
-                    <button class="edit-button" data-id="${item.id}">Editar</button>
-                    <button class="delete-button" data-id="${item.id}">Eliminar</button>
+                    <button class="edit-button" data-id="${
+                      item.id
+                    }">Editar</button>
+                    <button class="delete-button" data-id="${
+                      item.id
+                    }">Eliminar</button>
                 </li>
             `
-                )
-                .join("")}
+              )
+              .join("")}
         </ul>
         </center>
     `;
 
-    const crearButton = principalContainer.querySelectorAll(".create-button");
-    crearButton.forEach((button) => {
-        button.addEventListener("click", () => {
-            principalContainer.style.display = "none";
-            showCrearForm(onCreate);
-        });
+  // Afegeix esdevenidors als botons
+  const crearButton = principalContainer.querySelectorAll(".create-button");
+  crearButton.forEach((button) => {
+    button.addEventListener("click", () => {
+      principalContainer.style.display = "none";
+      showCrearForm(onCreate);
     });
+  });
 
-    const editButtons = principalContainer.querySelectorAll(".edit-button");
-    editButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-            const id = parseInt(button.getAttribute("data-id"));
-            const item = data.find((q) => parseInt(q.id) === id);
-            // principalContainer.innerHTML = "";
-            principalContainer.style.display = "none";
-            //onEdit(item);
-        });
+  // Afegeix esdevenidors als botons d'editar i eliminar
+  const editButtons = principalContainer.querySelectorAll(".edit-button");
+  editButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const id = parseInt(button.getAttribute("data-id"));
+      const item = data.find((q) => parseInt(q.id) === id);
+      // principalContainer.innerHTML = "";
+      principalContainer.style.display = "none";
+      //onEdit(item);
     });
+  });
 
-    const deleteButtons = principalContainer.querySelectorAll(".delete-button");
-    deleteButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-            const id = parseInt(button.getAttribute("data-id"));
-            if (confirm("¿Estás seguro de que deseas eliminar esta pregunta?")) {
-            onDelete(id);
-            }
-        });
+  // Afegeix esdevenidors als botons de eliminar
+  const deleteButtons = principalContainer.querySelectorAll(".delete-button");
+  deleteButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const id = parseInt(button.getAttribute("data-id"));
+      if (confirm("¿Estás seguro de que deseas eliminar esta pregunta?")) {
+        onDelete(id);
+      }
     });
+  });
 }
 
+// Funció per mostrar la vista principal i amagar les altres vistes
 export function showAll() {
-    fetchData();
-    principalContainer.style.display = "block";
-    crearContainer.style.display = "none";
-    editarContainer.style.display = "none";
+  fetchData();
+  principalContainer.style.display = "block";
+  crearContainer.style.display = "none";
+  editarContainer.style.display = "none";
 }

@@ -7,7 +7,8 @@ class Conexio {
     private $database = "a23cliferand_tr0";
     private $conn;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->conn = new mysqli(
             $this->servername,
             $this->username,
@@ -20,11 +21,13 @@ class Conexio {
         }
     }
 
-    public function getConnection() {
+    public function getConnection()
+    {
         return $this->conn;
     }
 
-    public function close() {
+    public function close()
+    {
         $this->conn->close();
     }
 }

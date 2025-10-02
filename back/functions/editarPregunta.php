@@ -6,6 +6,7 @@ $conn = $conexion->getConnection();
 $data = $_POST;
 $image = $_FILES['imatge'] ?? null;
 
+// Suport per a respostes en format array o com a camps individuals
 $respostes = isset($data['respostes']) ? json_decode($data['respostes'], true) : [];
 if (is_array($respostes)) {
     $resposta1 = $respostes[0]['etiqueta'] ?? '';
@@ -19,8 +20,11 @@ if (is_array($respostes)) {
     $resposta4 = $data['resposta4'] ?? '';
 }
 
-if (!isset($data['id']) || !isset($data['pregunta']) || !isset($data['resposta_correcta']) || 
-    empty($resposta1) || empty($resposta2) || empty($resposta3) || empty($resposta4)) {
+// Validació bàsica
+if (
+    !isset($data['id']) || !isset($data['pregunta']) || !isset($data['resposta_correcta']) ||
+    empty($resposta1) || empty($resposta2) || empty($resposta3) || empty($resposta4)
+) {
     http_response_code(400);
     echo json_encode([
         'error' => 'Missing required fields',
@@ -30,6 +34,7 @@ if (!isset($data['id']) || !isset($data['pregunta']) || !isset($data['resposta_c
     exit;
 }
 
+// Pujar la imatge si s'ha proporcionat una nova
 $uploadFile = null;
 if ($image) {
     $uploadDir = __DIR__ . '/../../img/';
@@ -55,6 +60,7 @@ if ($image) {
 }
 
 try {
+    // Actualitzar la pregunta a la base de dades
     $query = "UPDATE preguntes SET pregunta = ?, resposta1 = ?, resposta2 = ?, resposta3 = ?, resposta4 = ?, resposta_correcta = ?";
     $params = [
         $data['pregunta'],
@@ -72,6 +78,7 @@ try {
         $types .= "s";
     }
 
+    // Afegir la condició WHERE a la query
     $query .= " WHERE id = ?";
     $params[] = $data['id'];
     $types .= "i";
@@ -92,3 +99,4 @@ try {
 } finally {
     $conexion->close();
 }
+?>
