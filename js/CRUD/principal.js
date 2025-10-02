@@ -28,7 +28,7 @@ export function showPrincipalList(data, onEdit, onDelete, onCreate) {
                         ${item.respostes
                           .map(
                             (resposta) => `
-                                <li style="border: 1px solid #ccc; border-radius: 10px; padding: 5px 0;">${
+                                <li class="crud-question">${
                                   resposta.id == item.resposta_correcta
                                     ? `<strong>${resposta.etiqueta}</strong>`
                                     : resposta.etiqueta
