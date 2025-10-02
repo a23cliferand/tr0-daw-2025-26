@@ -41,6 +41,8 @@ function showEndScreen(correccio, globalData) {
                         const isCorrect = respostaBackend && resposta.id === respostaBackend.correcta;
                         const isUserAnswer = resposta.id === r;
 
+                        // console.log("INFO",resposta.etiqueta, isCorrect, isUserAnswer);
+
                         return `
                             <li>
                                 <button class="answer-button ${

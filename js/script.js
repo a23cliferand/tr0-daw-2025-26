@@ -71,7 +71,10 @@ function updateMarcador() {
     const partida = getPartidaFromStorage();
     const contenidorMarcador = document.getElementById("marcador");
     contenidorMarcador.innerHTML = `
-        <h3>Marcador</h3>
+        <div class="progress box">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: ${(partida.resposta.length / globalData.preguntes.length) * 100}%;" aria-valuenow="${partida.resposta.length}" aria-valuemin="0" aria-valuemax="${globalData.preguntes.length}">${Math.round((partida.resposta.length / globalData.preguntes.length) * 100)}%</div>
+        </div>
+        <br>
         <p>Has contestat ${partida.resposta.length} de ${globalData.preguntes.length} preguntes</p>
         <p>Temps restant: ${partida.temps}s</p>
     `; 
