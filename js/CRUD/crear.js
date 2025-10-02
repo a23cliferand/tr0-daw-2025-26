@@ -37,7 +37,7 @@ export function showCrearForm(onSubmit) {
             
             <center>
             <button type="submit">Crear</button>
-            <button type="button" id="cancelarCrear">Cancelar</button>
+            <button type="button" id="cancelarCrear">Cancel·lar</button>
             </center>
         </form>
     `;
@@ -57,7 +57,7 @@ export function showCrearForm(onSubmit) {
         !form.resposta4.value.trim() ||
         !form.imatge.files.length
       ) {
-        alert("Por favor, completa todos los campos correctamente");
+        alert("Si us plau, completa tots els camps correctament");
         return;
       }
 
@@ -66,7 +66,7 @@ export function showCrearForm(onSubmit) {
         form.resposta_correcta.value < 1 ||
         form.resposta_correcta.value > 4
       ) {
-        alert("La respuesta correcta debe ser un número entre 1 y 4");
+        alert("La resposta correcta ha de ser un número entre 1 i 4");
         return;
       }
 
@@ -87,9 +87,9 @@ export function showCrearForm(onSubmit) {
 
       onSubmit(updatedData);
     } catch (error) {
-      console.error("Error al procesar el formulario:", error);
+      console.error("Error:", error);
       alert(
-        "Ocurrió un error al procesar el formulario. Por favor, inténtalo de nuevo."
+        "Error al processar les dades. Si us plau, verifica que tots els camps estiguin complets."
       );
     }
 

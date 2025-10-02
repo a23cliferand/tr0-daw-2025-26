@@ -51,12 +51,12 @@ export function loadQuestion(
                   currentQuestionIndex === globalData.preguntes.length - 1
                     ? "none"
                     : "inline-block"
-                }; min-width: 100px;">Siguiente</button>
+                }; min-width: 100px;">Següent</button>
                 <button id="finalizarButton" style="display: ${
                   currentQuestionIndex === globalData.preguntes.length - 1
                     ? "inline-block"
                     : "none"
-                }; min-width: 100px;">Finalizar</button>
+                }; min-width: 100px;">Finalitzar</button>
             </div>
         </div>
     `;

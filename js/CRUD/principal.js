@@ -12,7 +12,7 @@ export function showPrincipalList(data, onEdit, onDelete, onCreate) {
   principalContainer.innerHTML = `
         <h2>Llista de Preguntes</h2>
         <center>
-        <button class="create-button">Crear Nueva Pregunta</button>
+        <button class="create-button">Crear Nova Pregunta</button>
         <ul>
             ${data
               .map(

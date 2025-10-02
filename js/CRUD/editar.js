@@ -68,14 +68,14 @@ export function showEditarForm(data, onSubmit, principalList) {
   }?t=${Date.now()}" alt="Imatge actual" style="max-width: 200px; display: 'block' : 'none'}; margin-bottom: 10px;">
             <input type="file" id="imatge" name="imatge">
             <center>
-            <button type="submit">Guardar Cambios</button>
-            <button type="button" id="cancelarEdicion">Cancelar</button>
+            <button type="submit">Salvar</button>
+            <button type="button" id="cancelarEdicio">Cancel·lar</button>
             </center>
         </form>
     `;
 
   const form = document.getElementById("editarForm");
-  const cancelButton = document.getElementById("cancelarEdicion");
+  const cancelButton = document.getElementById("cancelarEdicio");
 
   // Gestiona l'enviament del formulari
   form.addEventListener("submit", (e) => {
@@ -88,7 +88,7 @@ export function showEditarForm(data, onSubmit, principalList) {
         !form.resposta3.value.trim() ||
         !form.resposta4.value.trim()
       ) {
-        alert("Por favor, completa todos los campos correctamente");
+        alert("Si us plau, completa tots els camps correctament");
         return;
       }
 
@@ -97,7 +97,7 @@ export function showEditarForm(data, onSubmit, principalList) {
         form.resposta_correcta.value < 1 ||
         form.resposta_correcta.value > 4
       ) {
-        alert("La respuesta correcta debe ser un número entre 1 y 4");
+        alert("La resposta correcta ha de ser un número entre 1 i 4");
         return;
       }
 
@@ -120,11 +120,12 @@ export function showEditarForm(data, onSubmit, principalList) {
       showAll();
       editarContainer.style.display = "none";
       editarContainer.innerHTML = "";
+      onSubmit(updatedData);
     } catch (error) {
+      console.error("Error:", error);
       alert(
-        "Error al procesar los datos. Por favor, verifica que todos los campos estén completos."
+        "Error al processar les dades. Si us plau, verifica que tots els camps estiguin complets."
       );
-      console.error("Error al enviar los datos:", error);
     }
   });
 
