@@ -33,11 +33,11 @@ try {
     }
 
     // Si es demanen totes les preguntes, no cal filtrar ni desar a sessió
-    if($quantitat == "all"){
+    if ($quantitat == "all") {
         echo json_encode(["preguntes" => $preguntesFormatted], JSON_UNESCAPED_UNICODE);
     }
     // Si es demana una quantitat específica, seleccionar aleatòriament
-    else{
+    else {
         $quantitat = intval($quantitat);
         if (count($preguntesFormatted) >= $quantitat) {
             $claus = array_rand($preguntesFormatted, $quantitat);
@@ -69,3 +69,4 @@ try {
 } finally {
     $conexion->close();
 }
+?>

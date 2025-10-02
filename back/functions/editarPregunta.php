@@ -21,8 +21,10 @@ if (is_array($respostes)) {
 }
 
 // Validació bàsica
-if (!isset($data['id']) || !isset($data['pregunta']) || !isset($data['resposta_correcta']) || 
-    empty($resposta1) || empty($resposta2) || empty($resposta3) || empty($resposta4)) {
+if (
+    !isset($data['id']) || !isset($data['pregunta']) || !isset($data['resposta_correcta']) ||
+    empty($resposta1) || empty($resposta2) || empty($resposta3) || empty($resposta4)
+) {
     http_response_code(400);
     echo json_encode([
         'error' => 'Missing required fields',
@@ -97,3 +99,4 @@ try {
 } finally {
     $conexion->close();
 }
+?>

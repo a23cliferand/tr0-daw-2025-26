@@ -17,3 +17,4 @@ if ($action && file_exists($functionsDir . $action . ".php")) {
     http_response_code(404);
     echo json_encode(["error" => "Funcion no encontrada"]);
 }
+?>

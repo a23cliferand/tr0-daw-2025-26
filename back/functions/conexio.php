@@ -1,13 +1,15 @@
 <?php
 
-class Conexio {
+class Conexio
+{
     private $servername = "TR0_DB";
     private $username = "root";
     private $password = "Jupiter1";
     private $database = "tr0_db";
     private $conn;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->conn = new mysqli(
             $this->servername,
             $this->username,
@@ -20,11 +22,13 @@ class Conexio {
         }
     }
 
-    public function getConnection() {
+    public function getConnection()
+    {
         return $this->conn;
     }
 
-    public function close() {
+    public function close()
+    {
         $this->conn->close();
     }
 }

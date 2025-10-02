@@ -13,16 +13,17 @@ try {
 
     // Query per cada resposta del usuari
     foreach ($respostes as $resposta) {
-        $idPregunta = (int)$resposta['p'];
-        $respostaUsuari = (int)$resposta['r'];
+        $idPregunta = (int) $resposta['p'];
+        $respostaUsuari = (int) $resposta['r'];
 
         $stmt = $conn->prepare("SELECT resposta_correcta FROM preguntes WHERE id = ?");
         $stmt->bind_param("i", $idPregunta);
         $stmt->execute();
         $result = $stmt->get_result();
 
+        // Comprovar si la resposta és correcta
         if ($row = $result->fetch_assoc()) {
-            $respostaCorrecta = (int)$row['resposta_correcta'];
+            $respostaCorrecta = (int) $row['resposta_correcta'];
             if ($respostaCorrecta === $respostaUsuari) {
                 $respostesCorrectes++;
             }
@@ -48,3 +49,4 @@ try {
     http_response_code(500);
     echo json_encode(['error' => 'Database error: ' . $e->getMessage()]);
 }
+?>
