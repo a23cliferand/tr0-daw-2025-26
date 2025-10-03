@@ -60,7 +60,7 @@ export function showPrincipalList(data, onEdit, onDelete, onCreate) {
     });
   });
 
-  // Afegeix esdevenidors als botons d'editar i eliminar
+  // Afegeix esdevenidors als botons d'editar
   const editButtons = principalContainer.querySelectorAll(".edit-button");
   editButtons.forEach((button) => {
     button.addEventListener("click", () => {
@@ -77,7 +77,7 @@ export function showPrincipalList(data, onEdit, onDelete, onCreate) {
   deleteButtons.forEach((button) => {
     button.addEventListener("click", () => {
       const id = parseInt(button.getAttribute("data-id"));
-      if (confirm("¿Estás seguro de que deseas eliminar esta pregunta?")) {
+      if (confirm("Estás segur que vols eliminar aquesta pregunta?")) {
         onDelete(id);
       }
     });
