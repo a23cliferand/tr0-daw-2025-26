@@ -1,20 +1,39 @@
 import { showPrincipalList } from "./principal.js";
 import { showCrearForm } from "./crear.js";
 import { showEditarForm } from "./editar.js";
+import { showCarrega } from "../carrega.js";
 
 let data = [];
 
 let URL = "http://localhost:8080";
 
 // Funció per obtenir les dades del servidor
+// Hi ha un timeout de 5 segons per poder donar temps a què es guardi la imatge al servidor i la mostri.
+// Pot passar que si hi ha molt moviment al servidor, la imatge no es mostri a la primera.
 export function fetchData() {
   fetch(`${URL}/back/back.php?action=getData&quantitat=all`)
     .then((response) => response.json())
     .then((result) => {
       data = result.preguntes;
-      showPrincipalList(data, handleEdit, handleDelete, handleCreate);
+      showCarrega(5000);
+      setTimeout(() => {
+        showPrincipalList(data, handleEdit, handleDelete, handleCreate);
+      }, 5000);
     });
 }
+
+// Funció per obtenir les dades del servidor
+// export function fetchDataImage() {
+//   fetch(`${URL}/back/back.php?action=getData&quantitat=all`)
+//     .then((response) => response.json())
+//     .then((result) => {
+//       data = result.preguntes;
+//       console.log("CONFOTO");
+//       setTimeout(() => {
+//         showPrincipalList(data, handleEdit, handleDelete, handleCreate);
+//       }, 5000);
+//     });
+// }
 
 // Funció per crear una nova pregunta
 function handleCreate(newData) {
