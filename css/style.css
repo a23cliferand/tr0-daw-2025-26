@@ -4,20 +4,62 @@
     padding: 0;
     box-sizing: border-box;
 }
+/* https://coolors.co/palette/dce0d9-fbf6ef-ead7c3 */
+/* Variables de colores */
+:root {
+    --pregunta: #FBF6EF;
+    --divisor: #EAD7C3;
+    --fons: #DCE0D9;
+    --text-principal: #333;
+    --text-clar: #fff;
+}
 
+/* Estilos generales del body con Grid Layout */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.5;
-    color: #333;
-    background-color: #f5f5f5;
+    color: var(--text-principal);
+    background-color: var(--fons);
     padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     min-height: 100vh;
+
+    /* Grid layout centrado */
+    display: grid;
+    grid-template-areas: 
+        "header"
+        "main"
+        "footer";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    gap: 20px;
+    justify-items: center;
+    align-items: start;
 }
 
-/* Contenidors principals */
+/* Áreas principales con centrado interno */
+header, main, footer {
+    width: 100%;
+    max-width: 1200px;
+}
+
+header {
+    grid-area: header;
+}
+
+main {
+    grid-area: main;
+}
+
+footer {
+    grid-area: footer;
+}
+
+/* Zona de la pregunta */
+#questionari {
+    background-color: var(--pregunta);
+}
+
+/* Contenedores principales */
 #inici:not(:empty),
 #marcador:not(:empty),
 #temps:not(:empty),
@@ -32,25 +74,21 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-/* Títols */
+/* Títulos */
 h1, h2, h3 {
     margin-bottom: 15px;
-    color: #2c3e50;
+    color: var(--text-principal);
     text-align: center;
 }
 
-/* Botons */
-button.finalizarButton {
-    background-color: #e74c3c;
-}
-
+/* Botones */
 button {
     width: auto;
     min-width: 150px;
     padding: 12px;
     margin: 10px 5px;
     background-color: #3498db;
-    color: black;
+    color: var(--text-clar);
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -62,7 +100,11 @@ button:hover {
     background-color: #2980b9;
 }
 
-/* Llistes de respostes */
+button.finalizarButton {
+    background-color: #e74c3c;
+}
+
+/* Lista de respuestas */
 ul {
     list-style: none;
     padding-left: 0;
@@ -72,24 +114,8 @@ li {
     margin: 8px 0;
 }
 
-input {
-    display: block;
-    width: 100%;
-    padding: 10px 12px;
-    margin: 8px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    background-color: #f8f9fa;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    }
-
-    input:focus {
-        border-color: #3498db;
-        outline: none;
-        box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.15);
-}
-
+/* Inputs y selects */
+input,
 select {
     display: block;
     width: 100%;
@@ -101,20 +127,28 @@ select {
     background-color: #f8f9fa;
     transition: border-color 0.2s, box-shadow 0.2s;
 }
-/* Respostes */
 
+input:focus,
+select:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.15);
+}
+
+/* Botones de respuestas */
 .answer-button {
     width: 100%;
     padding: 10px;
     text-align: left;
-    background-color: #f8f9fa;
-    border: 1px solid #ddd;
+    background-color: var(--fons);
+    border: 1px solid var(--divisor);
     border-radius: 4px;
     cursor: pointer;
+    color: var(--text-principal);
 }
 
 .answer-button:hover {
-    background-color: #e9ecef;
+    background-color: var(--divisor);
 }
 
 .answer-button.selected {
@@ -138,22 +172,23 @@ select {
     font-weight: bold;
 }
 
-/* Contenidor CRUD */
-
+/* Contenedor CRUD */
 .crud {
     margin: 20px;
-    border: 1px solid #eee;
-    border-radius: 14px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-left: 25px;
-    padding-right: 25px;
+    padding: 20px 25px;
     background: #fafbfc;
+    border: 1px solid #eee;
     border-radius: 6px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.04);
     display: flex;
     flex-direction: column;
     gap: 15px;
+}
+
+.crud-question {
+    border: 1px solid var(--divisor); 
+    border-radius: 10px; 
+    padding: 5px 0;
 }
 
 /* Imágenes */
@@ -163,10 +198,8 @@ img {
     height: auto;
     object-fit: contain;
     border-radius: 4px;
-    margin: 10px 0;
+    margin: 10px auto;
     display: block;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 /* Marcador y temporizador */
@@ -175,15 +208,4 @@ img {
     text-align: center;
     font-weight: bold;
     color: #2c3e50;
-}
-
-/* Responsive */
-@media (min-width: 768px) {
-    #inici:not(:empty),
-    #marcador:not(:empty),
-    #temps:not(:empty),
-    #questionari:not(:empty),
-    #final:not(:empty) {
-        width: 80%;
-    }
 }
