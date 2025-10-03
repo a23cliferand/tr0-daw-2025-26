@@ -11,7 +11,16 @@ $action = $_GET['action'] ?? null;
 
 $functionsDir = __DIR__ . "/functions/";
 
-if ($action && file_exists($functionsDir . $action . ".php")) {
+$ALLOWED_ACTIONS = [
+    "conexio",
+    "correccio",
+    "crearPregunta",
+    "editarPregunta",
+    "esborrarPregunta",
+    "getData"
+];
+
+if ($action && in_array($action, $ALLOWED_ACTIONS)) {
     require $functionsDir . $action . ".php";
 } else {
     http_response_code(404);
