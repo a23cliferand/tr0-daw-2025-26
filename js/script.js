@@ -94,6 +94,7 @@ function updateMarcador() {
     globalData.preguntes.length
   } preguntes</p>
         <p>Temps restant: ${partida.temps}s</p>
+        <button onclick="resetPartida()">Esborrar Partida</button>
     `;
 }
 
@@ -116,6 +117,17 @@ function startTimer() {
   }, 1000);
 }
 
+export function resetPartida() {
+  localStorage.removeItem("partida");
+  localStorage.removeItem("preguntes");
+  globalData = null;
+  estatDeLaPartida = { resposta: [], temps: 30 };
+  currentQuestionIndex = 0;
+  location.reload();
+}
+
+window.resetPartida = resetPartida;
+
 // Atura el temporitzador
 export function stopTimer() {
   clearInterval(timerInterval);
@@ -123,9 +135,10 @@ export function stopTimer() {
 
 // Carrega les preguntes i mostra la pantalla d'inici al principi
 window.addEventListener("DOMContentLoaded", (event) => {
+  const partidaGuardada = localStorage.getItem("partida");
   const savedQuestions = localStorage.getItem("preguntes");
 
-  if (savedQuestions) {
+  if (partidaGuardada && savedQuestions) {
     globalData = JSON.parse(savedQuestions);
     estatDeLaPartida = getPartidaFromStorage();
     currentQuestionIndex = estatDeLaPartida.resposta.length;
