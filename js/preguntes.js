@@ -17,6 +17,8 @@ export function loadQuestion(
   localStorage.setItem("partida", JSON.stringify(partida));
   const respuestasGuardadas = partida.resposta || [];
 
+  localStorage.setItem("partida", JSON.stringify(partida));
+
   // Crea una cadena per la pregunta
   let stringDataQuestionari = `
         <h3>${question.pregunta}</h3>
@@ -79,6 +81,7 @@ export function loadQuestion(
 
       buttons.forEach((btn) => btn.classList.remove("selected"));
       button.classList.add("selected");
+      localStorage.setItem("preguntes", JSON.stringify(globalData));
       // console.log(JSON.parse(localStorage.getItem("partida")).resposta);
     });
   });
