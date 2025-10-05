@@ -10,6 +10,7 @@ let URL = "http://a23cliferand.daw.inspedralbes.cat/tr0";
 // Mostra la llista principal de preguntes amb opcions per editar i eliminar
 export function showPrincipalList(data, onEdit, onDelete, onCreate) {
   principalContainer.innerHTML = `
+        <center><button class="returnQuest">Tornar al qüestionari</button></center>
         <h2>Llista de Preguntes</h2>
         <center>
         <button class="create-button">Crear Nova Pregunta</button>
@@ -50,6 +51,12 @@ export function showPrincipalList(data, onEdit, onDelete, onCreate) {
         </ul>
         </center>
     `;
+
+  // Afegeix esdevenidor al botó de tornar al qüestionari
+  const returnQuest = principalContainer.querySelector(".returnQuest");
+  returnQuest.addEventListener("click", () => {
+    window.location.href = "./index.html";
+  });
 
   // Afegeix esdevenidors als botons
   const crearButton = principalContainer.querySelectorAll(".create-button");

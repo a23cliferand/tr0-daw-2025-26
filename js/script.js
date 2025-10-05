@@ -51,6 +51,12 @@ function startQuiz() {
   loadQuestion(globalData, currentQuestionIndex, saveAnswer, updateMarcador);
 }
 
+function crudOperations() {
+  window.location.href = "./crud.html";
+}
+
+window.crudOperations = crudOperations;
+
 // Desa la resposta de l'usuari i carrega la següent pregunta o finalitza el qüestionari
 function saveAnswer(i, j) {
   const question = globalData.preguntes[i];

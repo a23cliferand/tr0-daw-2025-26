@@ -4,6 +4,7 @@ export function showStartScreen(startQuiz) {
   inici.innerHTML = `
         <h1>Test d'autoescola</h1>
         <center><button onclick="startQuiz()">Començar</button></center>
+        <center><button onclick='crudOperations()'>Panell d'adminitració</button></center>
     `;
   document.getElementById("marcador").innerHTML = "";
   document.getElementById("questionari").innerHTML = "";
